@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:i_seneca/providers/data_provider.dart';
 
 import 'routes/app_routes.dart';
 import 'theme/app_theme.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       routes: AppRoutes.getAppRoutes(),
       //onGenerateRoute: AppRoutes.onGenerateRoute,
       theme: AppTheme.lightTheme
+      dataprovider = DataproviderScreen().getDatas();
       
     );
   }
