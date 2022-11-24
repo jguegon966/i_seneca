@@ -60,13 +60,10 @@ class LoginScreen extends StatelessWidget {
               ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal,
-                    shadowColor: Colors.cyanAccent,
-                    textStyle: const TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w600
-                    )
-                    ),
+                      backgroundColor: Colors.teal,
+                      shadowColor: Colors.cyanAccent,
+                      textStyle: const TextStyle(
+                          fontSize: 25, fontWeight: FontWeight.w600)),
                   onPressed: () {
                     FocusScope.of(context).requestFocus(FocusNode());
 
