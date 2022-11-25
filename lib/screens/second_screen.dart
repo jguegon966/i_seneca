@@ -1,10 +1,18 @@
+
 import 'package:flutter/material.dart';
+import 'package:i_seneca/models/data_response.dart';
+import 'package:i_seneca/providers/data_provider.dart';
 import 'package:i_seneca/screens/login_screen.dart';
+import 'package:provider/provider.dart';
 
 class SecondScreen extends StatelessWidget {
   final String? username;
 
+  //final datas = Provider.of<DataproviderScreen>(context);
+  //print(moviesProvider.onDisplayMovies);
+
   const SecondScreen({Key? key, required this.username}) : super(key: key);
+  
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +62,69 @@ class SecondScreen extends StatelessWidget {
               children: const[
                 //Color(Colors.amberAccent),
                 Icon(Icons.handshake),
-                Text('Perfil Profesorado', style: TextStyle(fontSize: 20, color: Colors.blue),)
+                Text('Perfil Profesorado', style: TextStyle(fontSize: 20, color: Colors.blue),),
+                
               ],
+            ),
+            
+            /*
+            
+            FutureBuilder(
+              future: getDataFromGoogleSheet(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.data != null) {
+                  return SafeArea(
+                      child: Container(
+                    child: SfCalendar(
+                      view: CalendarView.month,
+                      monthViewSettings: MonthViewSettings(showAgenda: true),
+                      dataSource: MeetingDataSource(snapshot.data),
+                      initialDisplayDate: snapshot.data[0].from,
+                    ),
+                  ));
+                } else {
+                  return Container(
+                    child: const Center(
+                      child: Text('Loading.....'),
+                    ),
+                  );
+                }
+              },
             )
-          ],)
+            */
+          ],),
+          Row(
+            children: [
+              Column(
+                children: [
+                  ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.teal,
+                      shadowColor: Colors.cyanAccent,
+                      textStyle: const TextStyle(
+                          fontSize: 25, fontWeight: FontWeight.w600)),
+                  onPressed: () {
+                    FocusScope.of(context).requestFocus(FocusNode());
 
+                    
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const LoginScreen()),
+                      );
+                  },
+                  child: const SizedBox(
+                    width: 400,
+                    height: 50,
+                    child: Center(
+                      child: Text('Volver atras'),
+                    ),
+                  ))
+                ],
+              )
+            ],
+          )
         ],
       ),
     );
