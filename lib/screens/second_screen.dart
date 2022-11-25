@@ -18,6 +18,9 @@ class SecondScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const Text('ISENECA'),
+        elevation: 5,
         actions: [
           IconButton(
                   style: ElevatedButton.styleFrom(),
@@ -30,7 +33,7 @@ class SecondScreen extends StatelessWidget {
                                 const LoginScreen()),
                       );
                   },
-                   icon: const Icon(Icons.logout_rounded),
+                   icon: const Icon(Icons.logout),
 
                   ),
         ],
