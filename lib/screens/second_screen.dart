@@ -17,6 +17,24 @@ class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+                  style: ElevatedButton.styleFrom(),
+                  onPressed: () {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const LoginScreen()),
+                      );
+                  },
+                   icon: const Icon(Icons.logout_rounded),
+
+                  ),
+        ],
+      ),
       backgroundColor: Colors.white,
       body: Column(
         children: [
@@ -93,38 +111,6 @@ class SecondScreen extends StatelessWidget {
             )
             */
           ],),
-          Row(
-            children: [
-              Column(
-                children: [
-                  ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.teal,
-                      shadowColor: Colors.cyanAccent,
-                      textStyle: const TextStyle(
-                          fontSize: 25, fontWeight: FontWeight.w600)),
-                  onPressed: () {
-                    FocusScope.of(context).requestFocus(FocusNode());
-
-                    
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const LoginScreen()),
-                      );
-                  },
-                  child: const SizedBox(
-                    width: 400,
-                    height: 50,
-                    child: Center(
-                      child: Text('Cerrar Sesion'),
-                    ),
-                  ))
-                ],
-              )
-            ],
-          )
         ],
       ),
     );
