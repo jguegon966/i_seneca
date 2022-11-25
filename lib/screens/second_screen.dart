@@ -118,7 +118,7 @@ class SecondScreen extends StatelessWidget {
                     width: 400,
                     height: 50,
                     child: Center(
-                      child: Text('Volver atras'),
+                      child: Text('Cerrar Sesion'),
                     ),
                   ))
                 ],
