@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:i_seneca/providers/data_provider.dart';
 import 'package:i_seneca/theme/app_theme.dart';
 import 'package:i_seneca/widgets/custom_login.dart';
+import 'package:provider/provider.dart';
 
 import 'second_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> myFormKey = GlobalKey<FormState>();
+
+    
 
     final Map<String, String> formValues = {
       'username': 'chechu',
@@ -28,6 +33,7 @@ class LoginScreen extends StatelessWidget {
 
   SingleChildScrollView login(GlobalKey<FormState> myFormKey,
       Map<String, String> formValues, BuildContext context) {
+        final userProvider = Provider.of<ProveedorDatos>(context, listen: true);
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -69,9 +75,11 @@ class LoginScreen extends StatelessWidget {
 
                     if (!myFormKey.currentState!.validate()) {
                       print('Datos no validos');
+                      print(userProvider.toString());
                       return;
                     } else if (formValues['username'] == 'chechu' &&
                         formValues['password'] == 'admin') {
+                          print(userProvider.toString());
                       Navigator.push(
                         context,
                         MaterialPageRoute(

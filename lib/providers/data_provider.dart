@@ -1,4 +1,4 @@
-import 'dart:convert' as convert;
+import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
@@ -7,22 +7,33 @@ import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 
-class DataproviderScreen extends ChangeNotifier {
+class ProveedorDatos extends ChangeNotifier{
 
-  Future<List<DataResponse>> getDataFromGoogleSheet() async {
-  Response data = await http.get(
-    Uri.parse(
-        "https://script.google.com/macros/s/AKfycbwG-W8x3ojt3-h5F-2IsmfdfTTdGo-bJiYF9gtBfC80KWNc7Qfv3DlApShRwYanHZia4A/exec"),
-    );
-    dynamic jsonAppData = convert.jsonDecode(data.body);
-  final List<DataResponse> dataBase = [];
-  for (dynamic data in jsonAppData) {
-    DataResponse dataResponse = DataResponse(
-      usuario: data['ususario'],
-      clave: data['clave']
-    );
-    dataBase.add(dataResponse);
+  List<DataResponse> listDataResponse = [];
+
+  ProveedorDatos(){
+    this.cargarJson();
   }
-  return dataBase;
+
+  Future<List> jsonDeccode() async {
+
+    var url="https://script.google.com/macros/s/AKfycbzq6EP_1jV1RP7YO7dVMl0wRApuSWrQWWcOMdpbL6okGek_y3anbmIqQU48iOBz3h9m/exec?spreadsheetId=1SPFk04l6FtyrZlWDTGGSsMZhXuLTrPrGUuLB3BUCvcs&sheet=usuarios";
+    final response = await http.get(Uri.parse(url));
+    return json.decode(response.body);
+
   }
+
+  void cargarJson() async {
+
+    List jsonData = await jsonDeccode();
+
+
+    print(jsonData.toString());
+    
+
+  }
+
 }
+
+
+
