@@ -4,6 +4,25 @@
 
 import 'dart:convert';
 
+class DataResponseList {
+  final List<DataResponse> dataResponseList;
+
+  DataResponseList({
+    required this.dataResponseList,
+  });
+
+  factory DataResponseList.fromJson(List<dynamic> parsedJson) {
+
+    List<DataResponse> listaResponse = <DataResponse>[];
+    listaResponse = parsedJson.map((i)=>DataResponse.fromJson(i)).toList();
+
+    return DataResponseList(
+       dataResponseList: listaResponse,
+    );
+  }
+
+}
+
 class DataResponse {
     DataResponse({
         this.id,
