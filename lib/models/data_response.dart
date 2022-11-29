@@ -4,27 +4,27 @@
 
 import 'dart:convert';
 
-class DataResponseList {
-  final List<DataResponse> dataResponseList;
+class UserList {
+  final List<User> userList;
 
-  DataResponseList({
-    required this.dataResponseList,
+  UserList({
+    required this.userList,
   });
 
-  factory DataResponseList.fromJson(List<dynamic> parsedJson) {
+  factory UserList.fromJson(List<dynamic> parsedJson) {
 
-    List<DataResponse> listaResponse = <DataResponse>[];
-    listaResponse = parsedJson.map((i)=>DataResponse.fromJson(i)).toList();
+    List<User> listaResponse = <User>[];
+    listaResponse = parsedJson.map((i)=>User.fromJson(i)).toList();
 
-    return DataResponseList(
-       dataResponseList: listaResponse,
+    return UserList(
+       userList: listaResponse,
     );
   }
 
 }
 
-class DataResponse {
-    DataResponse({
+class User {
+    User({
         this.id,
         required this.usuario,
         required this.clave,
@@ -34,9 +34,9 @@ class DataResponse {
     String usuario;
     String clave;
 
-    factory DataResponse.fromJson(String str) => DataResponse.fromMap(json.decode(str));
+    factory User.fromJson(String str) => User.fromMap(json.decode(str));
 
-    factory DataResponse.fromMap(Map<String, dynamic> json) => DataResponse(
+    factory User.fromMap(Map<String, dynamic> json) => User(
         id: json["id"],
         usuario: json["usuario"],
         clave: json["clave"],
