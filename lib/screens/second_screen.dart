@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:i_seneca/models/data_response.dart';
 import 'package:i_seneca/providers/data_provider.dart';
@@ -7,15 +6,18 @@ import 'package:provider/provider.dart';
 
 class SecondScreen extends StatelessWidget {
   final String? username;
+  final String? password;
 
   //final datas = Provider.of<DataproviderScreen>(context);
   //print(moviesProvider.onDisplayMovies);
 
-  const SecondScreen({Key? key, required this.username}) : super(key: key);
-  
+  const SecondScreen({Key? key, required this.username, required this.password})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<ProveedorDatos>(context, listen: true);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -23,19 +25,16 @@ class SecondScreen extends StatelessWidget {
         elevation: 5,
         actions: [
           IconButton(
-                  style: ElevatedButton.styleFrom(),
-                  onPressed: () {
-                    FocusScope.of(context).requestFocus(FocusNode());
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const LoginScreen()),
-                      );
-                  },
-                   icon: const Icon(Icons.logout),
-
-                  ),
+            style: ElevatedButton.styleFrom(),
+            onPressed: () {
+              FocusScope.of(context).requestFocus(FocusNode());
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
+              );
+            },
+            icon: const Icon(Icons.logout),
+          ),
         ],
       ),
       backgroundColor: Colors.white,
@@ -53,7 +52,10 @@ class SecondScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('$username', style: const TextStyle(fontSize: 20),),
+                Text(
+                  '$username, $password',
+                  style: const TextStyle(fontSize: 20),
+                ),
                 const Padding(padding: EdgeInsets.all(10)),
                 const Icon(Icons.people_rounded)
               ],
@@ -65,30 +67,44 @@ class SecondScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
-              Text('C:E:I:P: Maestro Eduardo Lobillo', style: TextStyle(fontSize: 20, color: Colors.blue),)],
+              Text(
+                'C:E:I:P: Maestro Eduardo Lobillo',
+                style: TextStyle(fontSize: 20, color: Colors.blue),
+              )
+            ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
-              Text('Perfil Profesorado', style: TextStyle(fontSize: 20, color: Colors.blue),)],
+              Text(
+                'Perfil Profesorado',
+                style: TextStyle(fontSize: 20, color: Colors.blue),
+              )
+            ],
           ),
-          Row(children: [
-            Column(
-              children: const[
-                Icon(Icons.access_alarms_rounded),
-                Text('Perfil Profesorado', style: TextStyle(fontSize: 20, color: Colors.blue),)
-              ],
-            ),
-            Column(
-              children: const[
-                //Color(Colors.amberAccent),
-                Icon(Icons.handshake),
-                Text('Perfil Profesorado', style: TextStyle(fontSize: 20, color: Colors.blue),),
-                
-              ],
-            ),
-            
-            /*
+          Row(
+            children: [
+              Column(
+                children: const [
+                  Icon(Icons.access_alarms_rounded),
+                  Text(
+                    'Perfil Profesorado',
+                    style: TextStyle(fontSize: 20, color: Colors.blue),
+                  )
+                ],
+              ),
+              Column(
+                children: const [
+                  //Color(Colors.amberAccent),
+                  Icon(Icons.handshake),
+                  Text(
+                    'Perfil Profesorado',
+                    style: TextStyle(fontSize: 20, color: Colors.blue),
+                  ),
+                ],
+              ),
+
+              /*
             
             FutureBuilder(
               future: getDataFromGoogleSheet(),
@@ -113,7 +129,8 @@ class SecondScreen extends StatelessWidget {
               },
             )
             */
-          ],),
+            ],
+          ),
         ],
       ),
     );

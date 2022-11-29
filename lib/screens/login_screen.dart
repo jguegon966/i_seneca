@@ -14,8 +14,6 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final GlobalKey<FormState> myFormKey = GlobalKey<FormState>();
 
-    
-
     final Map<String, String> formValues = {
       'username': 'chechu',
       'password': '1234',
@@ -86,7 +84,7 @@ class LoginScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                SecondScreen(username: formValues['username'])),
+                                SecondScreen(username: formValues['username'], password: formValues['password'])),
                       );
                       print(formValues);
                     }
