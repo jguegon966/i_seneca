@@ -28,7 +28,7 @@ class SecondScreen extends StatelessWidget {
             style: ElevatedButton.styleFrom(),
             onPressed: () {
               FocusScope.of(context).requestFocus(FocusNode());
-              Navigator.push(
+              Navigator.pop(
                 context,
                 MaterialPageRoute(builder: (context) => const LoginScreen()),
               );
