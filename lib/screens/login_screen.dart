@@ -77,17 +77,14 @@ class LoginScreen extends StatelessWidget {
                       print('Datos no validos');
                       print(userProvider.toString());
                       return;
-                    } else if (formValues['username'] == 'chechu' &&
-                        formValues['password'] == 'admin') {
-                          print(userProvider.toString());
+                    } 
+                      print(userProvider.toString());
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
                                 SecondScreen(username: formValues['username'], password: formValues['password'])),
                       );
-                      print(formValues);
-                    }
                     print(formValues);
                   },
                   child: const SizedBox(
