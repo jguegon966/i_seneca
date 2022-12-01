@@ -1,8 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:i_seneca/models/data_response.dart';
 import 'package:i_seneca/providers/data_provider.dart';
 import 'package:i_seneca/screens/login_screen.dart';
 import 'package:provider/provider.dart';
+
+import '../routes/app_routes.dart';
+import '../theme/app_theme.dart';
 
 class SecondScreen extends StatelessWidget {
   final String? username;
@@ -14,6 +18,15 @@ class SecondScreen extends StatelessWidget {
   const SecondScreen({Key? key, required this.username, required this.password})
       : super(key: key);
 
+  void displayDialogIOS(BuildContext context) {
+    showCupertinoDialog(
+        barrierDismissible: true,
+        context: context,
+        builder: (context) {
+          return const CupertinoAlertWidget();
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     final userProvider = Provider.of<ProveedorDatos>(context, listen: true);
@@ -21,23 +34,55 @@ class SecondScreen extends StatelessWidget {
     return FutureBuilder(
         future: userProvider.getDataFromGoogleSheet(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
+          int _marca = 0;
           if (snapshot.hasData) {
             snapshot.data.forEach((user) {
-              if (user.usuario.toString() == username && user.clave.toString() == password) {
-                print(user.usuario + user.clave + username + password);
-                return CargaCompetada(username: username, password: password);
+              if (user.usuario.toString() == username &&
+                  user.clave.toString() == password) {
+                _marca = 1;
               }
             });
-            return const SizedBox(
-              height: 400.0,
-              child: Center(child: CircularProgressIndicator()),
-            );
+            if (_marca == 1) {
+              //print(user.usuario + user.clave + username + password);
+              return CargaCompetada(username: username, password: password);
+            }
+            return CupertinoAlertWidget();
           }
           return const SizedBox(
             height: 400.0,
             child: Center(child: CircularProgressIndicator()),
           );
         });
+  }
+}
+
+class CupertinoAlertWidget extends StatelessWidget {
+  const CupertinoAlertWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoAlertDialog(
+      title: const Text('Fatal Error'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          Text('Error al iniciar Sesion'),
+          SizedBox(
+            height: 10,
+          ),
+          FlutterLogo(
+            size: 100,
+          )
+        ],
+      ),
+      actions: [
+        TextButton(
+                  onPressed: (() => Navigator.pop(context)),
+                  child: const Text('OK', style: TextStyle(color: Colors.red))),
+      ],
+    );
   }
 }
 
